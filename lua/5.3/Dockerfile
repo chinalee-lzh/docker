@@ -14,6 +14,7 @@ RUN set -ex \
     dirmngr \
     gnupg \
     unzip \
+    bash-completion \
   && curl -fsSL -o /tmp/lua.tar.gz "https://www.lua.org/ftp/lua-5.3.6.tar.gz" \
     && cd /tmp \
       && echo "f27d20d6c81292149bc4308525a9d6733c224fa5 *lua.tar.gz" | sha1sum -c - \
@@ -41,6 +42,8 @@ RUN set -ex \
   && cd / \
   && luarocks --version \
   && lua -v \
-  && luarocks install busted
+  && luarocks install busted \
+  && cd /usr/share/bash-completion \
+  && chmod +x bash_completion
 
 CMD ["lua"]
